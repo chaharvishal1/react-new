@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import './App.css'
 
 function App() {
@@ -6,6 +6,7 @@ function App() {
   const [numAlw, setNumAlw] = useState(false)
   const [charAlw, setCharAlw] = useState(false)
   const [password, setPassword] = useState('')
+  const passwordRef = useRef(null)
 
   const passwordGenerator = useCallback(() => {
     let pass= ''
@@ -24,6 +25,12 @@ function App() {
 
   }, [length, numAlw, charAlw, setPassword])
 
+  const copyPasswordClipboard = useCallback(() => {
+    passwordRef.current?.select()
+    passwordRef.current?.setSelectionRange(0, 6)
+    window.navigator.clipboard.writeText(password)
+  }, [password])
+
   useEffect(() => {
     passwordGenerator()
   }, [length, numAlw, charAlw, passwordGenerator])
@@ -33,8 +40,8 @@ function App() {
     <div className='container'>
       <div className='form-wrap'>
         <div className="input-group">
-          <input type="text" className="form-control" placeholder="Username" value={password} />
-          <button className='btn btn-primary' type="button">Copy</button>
+          <input type="text" className="form-control" placeholder="Username" value={password} ref={passwordRef} />
+          <button className='btn btn-primary' type="button" onClick={copyPasswordClipboard}>Copy</button>
         </div>
         <div className='other-fields'>
           <div className='form-check'>
