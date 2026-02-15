@@ -1,0 +1,42 @@
+{
+  "React Exported Function Component (TS)": {
+    "scope": "typescript,typescriptreact",
+    "prefix": "refc",
+    "body": [
+      "import React from 'react';",
+      "",
+      "interface ${1:Props} {",
+      "  $2",
+      "}",
+      "",
+      "const ${3:ComponentName}: React.FC<${1:Props}> = ({ $4 }) => {",
+      "  return (",
+      "    <div>",
+      "      $0",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "export default ${3:ComponentName};"
+    ],
+    "description": "React functional component (TypeScript) using React.FC and exported default"
+  },
+  "React Exported Function Component (JS)": {
+    "scope": "javascript,javascriptreact",
+    "prefix": "refc",
+    "body": [
+      "import React from 'react';",
+      "",
+      "const ${1:ComponentName} = ({ ${2:props} }) => {",
+      "  return (",
+      "    <div>",
+      "      $0",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "export default ${1:ComponentName};"
+    ],
+    "description": "React functional component (JavaScript) exported default"
+  }
+}
