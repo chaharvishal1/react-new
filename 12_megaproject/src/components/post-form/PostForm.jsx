@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {Input, Button, Select, RTE} from '../index'
-import {appwriteService} from '../../appwrite/config'
+import appwriteService from '../../appwrite/config'
 
 const PostForm = ({ post }) => {
   const {register, handleSubmit, getValue, setValue, control, watch} = useForm({
