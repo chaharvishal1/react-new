@@ -92,7 +92,7 @@ export class Service{
 
     // File related
 
-    async fileUpload(file){
+    async uploadFile(file){
         try {
             return await this.bucket.createFile(
                 conf.appwriteBucket,
@@ -100,7 +100,7 @@ export class Service{
                 file
             )
         } catch (error) {
-            console.log("service :: fileUpload :: error", error);
+            console.log("service :: uploadFile :: error", error);
             return false
         }
     }
