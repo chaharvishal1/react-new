@@ -20,11 +20,11 @@ const PostForm = ({ post }) => {
 
   const submit = async (data) => {
     if(post){
-      const file = data.image[0] ? await appwriteService.fileUpload(data.image[0]) : null
+      const file = data.image?.[0] ? await appwriteService.fileUpload(data.image[0]) : null
       if(file) {
-        appwriteService.deleteFile(post.featureImage)
+        await appwriteService.deleteFile(post.featureImage)
       }
-      const dbPost = appwriteService.updatePost(post.$id, {
+      const dbPost = await appwriteService.updatePost(post.$id, {
         ...data,
         featureImage: file ? file.$id : undefined
       })
@@ -33,11 +33,11 @@ const PostForm = ({ post }) => {
       }
     }
     else{
-      const file = await appwriteService.uploadFile(data.image[0])
+      const file = data.image?.[0] ? await appwriteService.uploadFile(data.image[0]) : null
       if(file){
         const fileId = file.$id
-        featureImage = fileId
-        const dbPost = await appwriteService.createPost({...data, userId: userData.$id})
+        const featureImage = fileId
+        const dbPost = await appwriteService.createPost({...data, userId: userData.$id, featureImage})
         if(dbPost){
           navigate(`/post/${dbPost.$id}`)
         }
@@ -64,7 +64,7 @@ const PostForm = ({ post }) => {
       }
     })
     return () => subscription.unsubscribe()
-  }, [watch, slugTransform. setValue])
+  }, [watch, slugTransform, setValue])
 
   return (
     <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
