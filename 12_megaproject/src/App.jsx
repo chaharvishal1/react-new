@@ -20,6 +20,10 @@ function App() {
         dispatch(logout())
       }
     })
+    .catch((error) => {
+      console.log("App: Error checking auth status", error);
+      dispatch(logout())
+    })
     .finally(() => setLoading(false))
   }, [])
 
