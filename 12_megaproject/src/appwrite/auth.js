@@ -17,7 +17,7 @@ export class AuthService{
             const userAccount = await this.account.create(ID.unique(), email, password, name);
             if(userAccount){
                 //Login directly
-                this.login({email, password});
+                return this.login({email, password});
             }
             else {
                 return userAccount;
@@ -35,6 +35,14 @@ export class AuthService{
         }
     }
 
+    async getCurrentUser(){
+        try {
+            return await this.account.get();
+        } catch (error) {
+            console.log("service : getCurrentUser: error", error);
+        }
+    }
+
     async logout(){
         try {
             await this.account.deleteSessions()
@@ -43,14 +51,6 @@ export class AuthService{
         }
     }
 
-    async getCurrentUser(){
-        try {
-            return await this.account.get();
-        } catch (error) {
-            console.log("service : getCurrentUser: error", error);
-            return null;
-        }
-    }
 }
 
 const authService = new AuthService();
