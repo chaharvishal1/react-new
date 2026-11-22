@@ -8,6 +8,7 @@ import { UserContextProvider } from './contextAPI/UserContext.jsx'
 import Parent from './contextAPI/Parent.jsx'
 import Form from './useActionState/form.jsx'
 import OptimisticUI from './OptimisticUI.jsx'
+import UpdateAPI from './UpdateAPI.jsx'
 
 function App() {
 
@@ -26,7 +27,8 @@ function App() {
         </UserContextProvider>
       </div> */}
       {/* <Form /> */}
-      <OptimisticUI />
+      {/* <OptimisticUI /> */}
+      <UpdateAPI />
     </>
   )
 }
